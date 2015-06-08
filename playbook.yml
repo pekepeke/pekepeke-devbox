@@ -1,0 +1,74 @@
+---
+- hosts: all
+  tasks:
+    # - apt_repository: repo='ppa:mizuno-as/silversearcher-ag'
+    #   sudo: yes
+    - name: install aptitude
+      apt: pkg="aptitude"
+      sudo: yes
+    - name: apt upgrade
+      apt: upgrade=yes update_cache=yes cache_valid_time=3600
+      sudo: yes
+    - name: install packages
+      apt: name={{item}} state=installed
+      sudo: yes
+      with_items:
+        - build-essential
+        - net-tools
+        - libperl-dev
+        - libluajit-5.1-dev
+        - libssl-dev
+        - libreadline-dev
+        - libbz2-dev
+        - libsqlite3-dev
+        - libclang-dev
+        - libxml2-dev
+        - libcurl4-openssl-dev
+        - libmcrypt-dev
+        - libpng12-dev
+        - libjpeg-dev
+        - libgif-dev
+        - libtiff-dev
+        - librsvg2-dev
+        - libpq-dev
+        - libmysqlclient-dev
+        - cmigemo
+        - libmigemo-dev
+        - apache2
+        - mysql-server
+        - mysql-client
+        - vim-nox
+        - git
+        - mercurial
+        - bzr
+        - curl
+        - zsh
+        - tmux
+        - tig
+        - editorconfig
+        - jq
+        - unar
+        - silversearcher-ag
+        - exuberant-ctags
+        - trash-cli
+        - openjdk-8-jdk
+        - ruby2.0-dev
+        - python3-dev
+        - python-dev
+        - nodejs-dev
+        - golang
+        - php5
+        - php5-common
+        - php5-cli
+        - php5-curl
+        - php5-gd
+        - php5-intl
+        - php5-json
+        - php5-mcrypt
+        - php5-mysql
+        - php5-sqlite
+        - php5-xdebug
+        - php5-xhprof
+    - command: update-rc.d apache2 defaults
+    - command: update-rc.d mysql defaults
+

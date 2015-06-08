@@ -1,0 +1,4 @@
+/.bundle
+/.kitchen.local.yml
+/.kitchen
+/vendor

@@ -1,0 +1,17 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  playbook: playbook.yml
+
+platforms:
+  - name: ubuntu-14.10
+    driver_config:
+      image: ubuntu:14.10
+
+suites:
+  - name: default
+

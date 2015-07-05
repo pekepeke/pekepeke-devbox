@@ -6,10 +6,16 @@
     - name: install aptitude
       apt: pkg="aptitude"
       sudo: yes
-    - name: apt upgrade
+    - name: add java repository
+      sudo: yes
+      apt_repository: repo='ppa:webupd8team/java' state=present
+    - name: upgrade apt packages
       apt: upgrade=yes update_cache=yes cache_valid_time=3600
       sudo: yes
-    - name: install packages
+    - name: accept oracle license
+      tags: java
+      shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - name: install apt packages
       apt: name={{item}} state=installed
       sudo: yes
       with_items:
@@ -51,8 +57,8 @@
         - silversearcher-ag
         - exuberant-ctags
         - trash-cli
-        - openjdk-8-jdk
-        - ruby2.0-dev
+        - oracle-java8-installer
+        - ruby-dev
         - python3-dev
         - python-dev
         - nodejs-dev
@@ -68,7 +74,7 @@
         - php5-mysql
         - php5-sqlite
         - php5-xdebug
-        - php5-xhprof
+        # - php5-xhprof
     - command: update-rc.d apache2 defaults
     - command: update-rc.d mysql defaults
 

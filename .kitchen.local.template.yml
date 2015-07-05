@@ -1,0 +1,5 @@
+---
+driver:
+  binary: docker.io
+  use_sudo: false
+

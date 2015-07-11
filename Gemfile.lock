@@ -5,10 +5,10 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     highline (1.7.2)
-    kitchen-ansible (0.0.16)
+    kitchen-ansible (0.0.19)
       librarian-ansible
       test-kitchen
-    kitchen-docker (1.5.0)
+    kitchen-docker (2.1.0)
       test-kitchen (>= 1.0.0)
     librarian (0.1.2)
       highline
@@ -16,39 +16,43 @@ GEM
     librarian-ansible (1.0.6)
       faraday
       librarian (~> 0.1.0)
-    mixlib-shellout (1.6.1)
-    multi_json (1.11.0)
+    mixlib-shellout (2.1.0)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    rspec (3.2.0)
-      rspec-core (~> 3.2.0)
-      rspec-expectations (~> 3.2.0)
-      rspec-mocks (~> 3.2.0)
-    rspec-core (3.2.3)
-      rspec-support (~> 3.2.0)
-    rspec-expectations (3.2.1)
+    net-telnet (0.1.1)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.1)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.2.0)
+      rspec-support (~> 3.3.0)
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.2.1)
+    rspec-mocks (3.3.1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.2.0)
-    rspec-support (3.2.2)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
     safe_yaml (1.0.4)
     serverspec (2.3.1)
       multi_json
       rspec (~> 3.0)
       rspec-its
       specinfra (~> 2.3)
-    specinfra (2.4.5)
+    sfl (2.2)
+    specinfra (2.36.18)
       net-scp
       net-ssh
-    test-kitchen (1.2.1)
-      mixlib-shellout (~> 1.2)
+      net-telnet
+      sfl
+    test-kitchen (1.4.1)
+      mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
       net-ssh (~> 2.7)
       safe_yaml (~> 1.0)
@@ -59,8 +63,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  kitchen-ansible (~> 0.0.2)
-  kitchen-docker (~> 1.5.0)
+  kitchen-ansible (~> 0.0.19)
+  kitchen-docker (~> 2.1.0)
   serverspec (~> 2.3.1)
-  specinfra (~> 2.4.4)
-  test-kitchen (~> 1.2.1)
+  specinfra (~> 2.36.4)
+  test-kitchen (~> 1.4.1)
+
+BUNDLED WITH
+   1.10.5

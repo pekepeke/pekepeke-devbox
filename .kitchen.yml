@@ -4,13 +4,16 @@ driver:
 
 provisioner:
   name: ansible_playbook
-  hosts: localhost
+  hosts: default
   playbook: playbook.yml
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ubuntu-15.04
     driver_config:
-      image: ubuntu:14.04
+      image: ubuntu:15.04
+
+busser:
+  ruby_bindir: /usr/bin
 
 suites:
   - name: default

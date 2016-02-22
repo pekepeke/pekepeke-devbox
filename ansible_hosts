@@ -1,2 +1,2 @@
 [default]
-192.168.33.200
+192.168.33.200 ansible_ssh_user=vagrant ansible_ssh_private_key=~/.vagrant.d/insecure_private_key

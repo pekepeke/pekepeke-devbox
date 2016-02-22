@@ -42,8 +42,8 @@
         - libmysqlclient-dev
         - cmigemo
         - libmigemo-dev
-        - apache2
-        - mysql-server
+        # - apache2
+        # - mysql-server
         - mysql-client
         - vim-nox
         - git
@@ -57,7 +57,7 @@
         - jq
         - unar
         - silversearcher-ag
-        - exuberant-ctags
+        # - exuberant-ctags
         - trash-cli
         - oracle-java8-installer
         - ruby-dev
@@ -79,14 +79,14 @@
         - php5-xhprof
     - command: php5enmod xdebug mcrypt xhprof
       sudo: yes
-    - command: update-rc.d apache2 defaults
-      sudo: yes
-    - command: update-rc.d mysql defaults
-      sudo: yes
-    - command: service apache2 start
-      sudo: yes
-    - command: mysql_install_db --user=mysql
-      sudo: yes
-    - command: service mysql start
-      sudo: yes
+    # - command: update-rc.d apache2 defaults
+    #   sudo: yes
+    # - command: update-rc.d mysql defaults
+    #   sudo: yes
+    # - command: service apache2 start
+    #   sudo: yes
+    # - command: mysql_install_db --user=mysql
+    #   sudo: yes
+    # - command: service mysql start
+    #   sudo: yes
 

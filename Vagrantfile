@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/vivid64"
+  config.ssh.insert_key = false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -49,7 +50,7 @@ Vagrant.configure(2) do |config|
 
     # Customize the amount of memory on the VM:
     vb.memory = "1024"
-    vb.customize ["modifyvm", :id, '--ostype', 'Ubuntu_64']
+    vb.customize ["modifyvm", :id, '--ostype', 'Ubuntu_64', '--paravirtprovider', 'kvm']
   end
   #
   # View the documentation for the provider you are using for more
@@ -67,7 +68,7 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
 	config.vm.provision "ansible" do |ansible|
 		ansible.playbook = "playbook.yml"
-    ansible.inventory_file = "ansible_hosts"
+    ansible.inventory_path = "ansible_hosts"
 	end
   # config.vm.provision "shell", inline: <<-SHELL
   #   sudo apt-get update

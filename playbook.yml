@@ -2,21 +2,36 @@
 - hosts: '{{host}}'
   vars:
     host: 'default'
+    main_user: 'vagrant'
   tasks:
     # - apt_repository: repo='ppa:mizuno-as/silversearcher-ag'
     #   sudo: yes
     - name: install aptitude
-      apt: pkg="aptitude"
+      apt: pkg={{item}} state=installed
       sudo: yes
+      with_items:
+        - aptitude
+    - name: add docker key
+      apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=58118E89F3A912897C070ADBF76221572C52609D state=present
+      sudo: yes
+    - name: add docker sources
+      sudo: yes
+      shell: echo deb https://apt.dockerproject.org/repo ubuntu-wily main > /etc/apt/sources.list.d/docker.list creates=/etc/apt/sources.list.d/docker.list
     - name: add java repository
       sudo: yes
       apt_repository: repo='ppa:webupd8team/java' state=present
+    - name: apt-cache docker-engine
+      sudo: yes
+      shell: apt-cache policy docker-engine
     - name: upgrade apt packages
       apt: upgrade=yes update_cache=yes cache_valid_time=3600
       sudo: yes
     - name: accept oracle license
       tags: java
       shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - name: install image-extra
+      shell: apt-get install -y linux-image-extra-$(uname -r)
+      sudo: yes
     - name: install apt packages
       apt: name={{item}} state=installed
       sudo: yes
@@ -62,7 +77,9 @@
         - oracle-java8-installer
         - ruby-dev
         - python3-dev
+        - python3-pip
         - python-dev
+        - python-pip
         - nodejs-dev
         - golang
         - php5
@@ -77,7 +94,18 @@
         - php5-sqlite
         - php5-xdebug
         - php5-xhprof
+    - name: install apt packages
+      apt: name={{item}} state=installed
+      sudo: yes
+      with_items:
+        - docker-engine
     - command: php5enmod xdebug mcrypt xhprof
+      sudo: yes
+    - name: setup docker
+      user: name={{ main_user }} append=yes groups=docker
+      sudo: yes
+    - name: install docker-compose
+      pip: name=docker-compose state=latest
       sudo: yes
     # - command: update-rc.d apache2 defaults
     #   sudo: yes

@@ -7,7 +7,7 @@
     # - apt_repository: repo='ppa:mizuno-as/silversearcher-ag'
     #   sudo: yes
     - name: install aptitude
-      apt: pkg={{item}} state=installed
+      apt: pkg={{item}} state=installed install_recommends=no
       sudo: yes
       with_items:
         - aptitude
@@ -33,7 +33,7 @@
       shell: apt-get install -y linux-image-extra-$(uname -r)
       sudo: yes
     - name: install apt packages
-      apt: name={{item}} state=installed
+      apt: name={{item}} state=installed install_recommends=no
       sudo: yes
       with_items:
         - build-essential
@@ -95,7 +95,7 @@
         - php5-xdebug
         - php5-xhprof
     - name: install apt packages
-      apt: name={{item}} state=installed
+      apt: name={{item}} state=installed install_recommends=no
       sudo: yes
       with_items:
         - docker-engine

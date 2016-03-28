@@ -99,7 +99,12 @@
       sudo: yes
       with_items:
         - docker-engine
-    - command: php5enmod xdebug mcrypt xhprof
+    - name: enable php5 modules
+      command: php5enmod {{item}}
+      with_items:
+        - xdebug
+        - mcrypt
+        - xhprof
       sudo: yes
     - name: setup docker
       user: name={{ main_user }} append=yes groups=docker
